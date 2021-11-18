@@ -1,7 +1,11 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
-import 'package:oav1/home/herr_logo.dart';
+import 'package:oav1/Calendario/estructura.dart';
+import 'package:oav1/RevisarConsultas/estructura.dart';
+import 'package:oav1/evaluarPacientes/estructura.dart';
+
+import 'funcion_psicologo.dart';
 
 class MyContactsPage extends StatefulWidget {
   static String ruta = "/home";
@@ -28,30 +32,75 @@ class _MyContactsPageState extends State<MyContactsPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "Buenas Tardes",
-                style: TextStyle(
-                    color: Color(0xFF171725),
-                    fontSize: 39,
-                    fontWeight: FontWeight.bold),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(10, 10, 0, 5),
+                child: Text(
+                  "Buenas Tardes",
+                  style: TextStyle(
+                      color: Color(0xFF171725),
+                      fontSize: 50,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
-              SizedBox(
-                height: 5,
+              const Padding(
+                padding: EdgeInsets.fromLTRB(10, 0, 0, 35),
+                child: Text(
+                  "Mijail Palomino R.",
+                  style: TextStyle(
+                      color: Color(0xFF92929D),
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
-              const Text(
-                "Mijail Palomino R.",
-                style: TextStyle(
-                    color: Color(0xFF92929D),
-                    fontSize: 23,
-                    fontWeight: FontWeight.bold),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Calendario()),
+                  );
+                },
+                style:
+                    ElevatedButton.styleFrom(primary: const Color(0XFF7CBAF1)),
+                child: herrComp(
+                  tex1: "Agenda Pacientes",
+                  tex2: "25 Pacientes",
+                  ima: "assets/images/agenda.jpg",
+                ),
               ),
-              SizedBox(
-                height: 25,
+              const SizedBox(
+                height: 36,
               ),
-              herrComp(
-                tex1: "Revisar Consultas",
-                tex2: "200 Solicitudes",
-                ima: "assets/images/home.png",
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => EvaluarPacientes()),
+                    );
+                  },
+                  style:
+                      ElevatedButton.styleFrom(primary: Colors.green.shade400),
+                  child: herrComp(
+                    tex1: "Evaluar Pacientes",
+                    tex2: "25 Pacientes",
+                    ima: "assets/images/lista.jpg",
+                  )),
+              const SizedBox(
+                height: 36,
+              ), //C:\Users\LAB REDES\Desktop\MijailPalomino\oav1\assets\images\consulta.jpg
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RevisarConsultas()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(primary: Colors.amber),
+                child: herrComp(
+                  tex1: "Revisar Consultas",
+                  tex2: "200 solicitudes",
+                  ima: "assets/images/consulta.jpg",
+                ),
               )
             ],
           ),
@@ -62,64 +111,5 @@ class _MyContactsPageState extends State<MyContactsPage> {
 }
 
 // ignore: camel_case_types
-class herrComp extends StatelessWidget {
-  const herrComp({Key? key, this.tex1 = "", this.tex2 = "", this.ima = ""})
-      : super(key: key);
-  final String tex1;
-  final String tex2;
-  final String ima;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 450,
-      height: 150,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-        color: Colors.blueGrey,
-        gradient: LinearGradient(
-            colors: [Colors.amber, Colors.red],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.red,
-            offset: Offset(2, 3),
-            blurRadius: 10,
-          )
-        ],
-      ),
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(30, 39, 27, 15),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  tex1,
-                  style: TextStyle(
-                      color: Color(0xFFFFFFFF),
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  tex2,
-                  style: TextStyle(
-                      color: Color(0xFFFFFFFF),
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold),
-                )
-              ],
-            ),
-          ),
-          HerrLogo(
-            imagen: ima,
-          )
-        ],
-      ),
-    );
-  }
-}
+
+
